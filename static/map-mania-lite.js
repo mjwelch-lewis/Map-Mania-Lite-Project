@@ -14,6 +14,22 @@ function initMap() {
     marker2.addListener('click', function() {
         infoWindow.open(gMap, marker2);
     });
+
+    google.maps.event.addListener(gMap, 'idle', function() {
+        updateGame();
+    });
+}
+
+function updateGame() {
+    console.log('function updateGame()!');
+    var zoomLevel = gMap.getZoom();
+    var inBounds = false;
+
+    if(gMap.getBounds().contains({lat: 45.3306, lng: -91.4918})) {
+        inBounds = true;
+    }
+
+    console.log("inBounds:" + inBounds + "zoomLevel:" + zoomLevel);
 }
 
 function initApplication() {
